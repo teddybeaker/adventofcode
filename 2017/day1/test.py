@@ -1,7 +1,7 @@
 import unittest
 from sum_duplicates import sibling_duplicates, halfway_around_duplicates;
 
-class TestStringMethods(unittest.TestCase):
+class TestSumDuplicates(unittest.TestCase):
 
     def test_sibling1(self):
         result = sibling_duplicates('1122')
