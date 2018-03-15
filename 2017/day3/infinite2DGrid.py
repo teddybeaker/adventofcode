@@ -1,18 +1,18 @@
-import math;
+import math
+from abc import ABC, abstractmethod
 
 # solved with the help of
 # https://github.com/jcpuja/advent-of-code-python/blob/master/day03/task01.py
 # look there for nicely commented code
 
-class Infinite2DGrid:
+class Infinite2DGrid(ABC):
 
     directions = ['right', 'up', 'left', 'down']
 
-    def __init__(self, number):
-        self._max_value = number
-        dimension = get_dimension(number)
-        self._grid = [[0 for x in range(dimension)] for y in range(dimension)]
-        origin = math.floor(dimension / 2)
+    def __init__(self, dimension):
+        self._dimension = dimension
+        self._grid = [[0 for x in range(self._dimension)] for y in range(self._dimension)]
+        origin = math.floor(self._dimension / 2)
         self._origin = self._coordinate = (origin, origin)
 
     def _init_fields(self):
@@ -23,9 +23,12 @@ class Infinite2DGrid:
 
     def fill(self):
         self._init_fields()
-        for x in range(1, self._max_value):
-            self._set_value(x)
+        for i in range(1, self._dimension**2+1):
+            value = self._calculate_value(i)
+            self._set_value(value)
             self._increment_items_filled()
+
+            if (self._stop(value)): break
 
             if self._has_finished_side():
                 self._increment_sides_filled()
@@ -88,15 +91,61 @@ class Infinite2DGrid:
         else:
             raise ValueError("can't handle direction %s " % s)
 
+    @abstractmethod
+    def _stop(self, value):
+        pass
+
+    @abstractmethod
+    def _calculate_value(self, step):
+        pass
+
+    def print(self):
+        for row in self._grid:
+            print(row)
+
+
+class Infinite2DGridPart1(Infinite2DGrid):
+
+    def __init__(self, max_value):
+        super().__init__(get_dimension(max_value))
+        self._max_value = max_value
+
+    def _stop(self, value):
+        return value >= self._max_value
+
+    def _calculate_value(self, step):
+        return step
+
     def calculate_distance(self):
         return self._manhattan_distance(self._origin, self._coordinate)
 
     def _manhattan_distance(self, coord1, coord2):
         return abs(coord1[0]-coord2[0]) + abs(coord1[1]-coord2[1])
 
-    def print(self):
-        for row in self._grid:
-            print(row)
+
+class Infinite2DGridPart2(Infinite2DGrid):
+
+    def __init__(self, max_value):
+        super().__init__(get_dimension(max_value)+4)
+        self._max_value = max_value
+        self._last_value = 1
+
+    def _stop(self, value):
+        return value >= self._max_value
+
+    def _calculate_value(self, step):
+        if (self._coordinate == self._origin):
+            return 1
+        sum = 0
+        x, y = self._coordinate
+        for i in range(-1, 2):
+            for j in range(-1, 2):
+                sum += self._grid[x+i][y+j]
+        self._last_value = sum
+        return sum
+
+    def get_last_value_written(self):
+        return self._last_value
 
 
 def get_dimension(number):
@@ -109,7 +158,12 @@ def get_dimension(number):
 if __name__ == '__main__':
     input = 361527
     print('the grid size is %d' % get_dimension(input))
-    grid = Infinite2DGrid(input)
-    grid.fill()
-    #grid.print()
-    print('the distance is %d ' % grid.calculate_distance())
+    grid1 = Infinite2DGridPart1(input)
+    grid1.fill()
+    #grid1.print()
+    print('the distance is %d ' % grid1.calculate_distance())
+
+    grid2 = Infinite2DGridPart2(input)
+    grid2.fill()
+    #grid2.print()
+    print('the first value written greater than %d is %d ' % (input, grid2.get_last_value_written()))
