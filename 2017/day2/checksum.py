@@ -9,9 +9,8 @@ def checksum_row_evenly_divisable(row):
     for i in range(0, len(row)):
         for j in range(0, len(row)):
             if (i != j):
-                div = row[i]/row[j];
-                if div == int(div):
-                    return div
+                if row[i] % row[j] == 0:
+                    return row[i]/row[j]
     raise Exception('no match found')
 
 def checksum_matrix(matrix, checksum_row):

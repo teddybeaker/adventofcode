@@ -14,6 +14,14 @@ def is_valid_passphrase_strict(passphrase):
                     return False
     return True
 
+def is_valid_passphrase_strict2(passphrase):
+    words = passphrase.split(" ")
+    sorted_words = ["".join(sorted(w)) for w in words]
+    for word in sorted_words:
+        if sorted_words.count(word) > 1:
+            return False
+    return True
+
 def is_anagram(word1, word2):
     if word1 == word2:
         return True
@@ -21,13 +29,13 @@ def is_anagram(word1, word2):
         return False
     for char in word1:
         if word1.count(char) != word2.count(char):
-            return False;
+            return False
     return True
 
 
 
 if __name__ == "__main__":
-    sum1 = sum2 = 0
+    sum1 = sum2 = sum3 = 0
     count = 0
     with open("./input.txt") as f:
         content = f.read()
@@ -39,7 +47,12 @@ if __name__ == "__main__":
                     sum1 += 1
                 if is_valid_passphrase_strict(passphrase):
                     sum2 += 1
+                if is_valid_passphrase_strict2(passphrase):
+                    sum3 += 1
     f.closed
+
+    if sum2 != sum3:
+        raise Exception("did get different number of valid passphrases with different methods: %d, %d" % (sum2, sum3))
 
     print("found %d valid passphrases with unique words in %d" % (sum1, count))
     print("found %d valid passphrases without anagrams in %d" % (sum2, count))
