@@ -2,6 +2,7 @@ import unittest;
 
 from recursive_circus import RecursiveCircus;
 
+
 class TestRecursiveCircus(unittest.TestCase):
 
     def test_find_root(self):
@@ -22,6 +23,7 @@ class TestRecursiveCircus(unittest.TestCase):
         self.assertIsNotNone(candidate)
         self.assertEqual('ugml', candidate.name)
         self.assertEqual(60, new_weight)
+
 
 if __name__ == '__main__':
     unittest.main()
