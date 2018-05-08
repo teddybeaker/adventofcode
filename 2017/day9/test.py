@@ -50,7 +50,7 @@ class TestStreamProcessing(unittest.TestCase):
         processor = StreamProcessing('{{<!!>},{<!!>},{<!!>},{<!!>}}')
         processor.process()
         self.assertEqual(5, processor.group_count())
-        self.assertEqual(4, processor.total_score())
+        self.assertEqual(9, processor.total_score())
 
     def test_two_groups_with_garbage(self):
         processor = StreamProcessing('{{<!>},{<!>},{<!>},{<a>}}')
