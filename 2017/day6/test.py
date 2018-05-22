@@ -1,6 +1,6 @@
-import unittest;
+import unittest
+from reallocator import Reallocator
 
-from reallocator import Reallocator;
 
 class TestReallocator(unittest.TestCase):
 
@@ -13,6 +13,7 @@ class TestReallocator(unittest.TestCase):
         testee = Reallocator([0, 2, 7, 0])
         testee.run()
         self.assertEqual(4, testee.get_loop_size())
+
 
 if __name__ == '__main__':
     unittest.main()

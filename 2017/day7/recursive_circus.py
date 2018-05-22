@@ -1,4 +1,4 @@
-import re;
+import re
 
 
 class RecursiveCircus:
@@ -64,10 +64,10 @@ class RecursiveCircus:
 
 
 class Program:
-    def __init__(self, name, weight, childNames=[]):
+    def __init__(self, name, weight, child_names=[]):
         self.name = name
         self.weight = weight
-        self.childNames = childNames
+        self.childNames = child_names
         self.children = []
         self._cumulated_weight_cache = None
 
@@ -76,10 +76,10 @@ class Program:
 
     def cumulated_weight(self):
         if self._cumulated_weight_cache is None:
-            sum = self.weight
+            total = self.weight
             for child in self.children:
-                sum += child.cumulated_weight()
-            self._cumulated_weight_cache = sum
+                total += child.cumulated_weight()
+            self._cumulated_weight_cache = total
         return self._cumulated_weight_cache
 
     def is_balanced(self):

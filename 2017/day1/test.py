@@ -1,5 +1,6 @@
 import unittest
-from sum_duplicates import sibling_duplicates, halfway_around_duplicates;
+from sum_duplicates import sibling_duplicates, halfway_around_duplicates
+
 
 class TestSumDuplicates(unittest.TestCase):
 

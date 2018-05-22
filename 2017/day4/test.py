@@ -1,5 +1,6 @@
-import unittest;
-from check_passphrase import is_valid_passphrase, is_valid_passphrase_strict, is_anagram, is_valid_passphrase_strict2;
+import unittest
+from check_passphrase import is_valid_passphrase, is_valid_passphrase_strict, is_anagram, is_valid_passphrase_strict2
+
 
 class TestPassPhraseChecker(unittest.TestCase):
 

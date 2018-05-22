@@ -1,32 +1,34 @@
-def sum_duplicates(digitString, offset):
-    length = len(digitString)
+def sum_duplicates(digit_string, offset):
+    length = len(digit_string)
     sum = 0
-    for i, char in enumerate(digitString):
-      if (char.isdigit()):
+    for i, char in enumerate(digit_string):
+      if char.isdigit():
         index = (i + offset) % length;
-        if char == digitString[index]:
+        if char == digit_string[index]:
           sum += int(char)
 
     return sum
 
-def sibling_duplicates(digitString):
-    return sum_duplicates(digitString, -1)
 
-def halfway_around_duplicates(digitString):
-    offset = int(len(digitString)/2);
-    return sum_duplicates(digitString, offset);
+def sibling_duplicates(digit_string):
+    return sum_duplicates(digit_string, -1)
 
 
-def readFromFile(filename):
+def halfway_around_duplicates(digit_string):
+    offset = int(len(digit_string) / 2);
+    return sum_duplicates(digit_string, offset);
+
+
+def read_from_file(filename):
     print('opening file %s' % filename)
     file = open(filename)
-    content = file.read()
+    file_input = file.read()
     file.close()
-    return content.strip()
+    return file_input.strip()
 
 
 if __name__ == "__main__":
-    content = readFromFile('./input.txt')
+    content = read_from_file('./input.txt')
     print('found numbers: %d' % len(content))
 
     result = sibling_duplicates(content)

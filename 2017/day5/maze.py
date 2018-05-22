@@ -1,22 +1,22 @@
 class Maze:
 
     def __init__(self, offsets):
-        self._offsets = offsets;
-        self._steps_needed = 0;
-        self._current_position = 0;
+        self._offsets = offsets
+        self._steps_needed = 0
+        self._current_position = 0
 
     def steps_needed(self):
-        return self._steps_needed;
+        return self._steps_needed
 
     def get_out(self):
         if len(self._offsets) < 1:
-            return;
+            return
         while self._current_position < len(self._offsets):
             current_offset = self._offsets[self._current_position]
             self._update_offset()
             self._current_position += current_offset
             self._steps_needed += 1
-            #print (self._offsets)
+            # print (self._offsets)
 
     def _update_offset(self):
         self._offsets[self._current_position] += 1
@@ -45,4 +45,4 @@ if __name__ == "__main__":
         strange_maze = StrangeMaze(offsets[:])
         strange_maze.get_out()
         print("needed %d steps to get out of strange maze" % strange_maze.steps_needed())
-    f.closed
+    f.close()

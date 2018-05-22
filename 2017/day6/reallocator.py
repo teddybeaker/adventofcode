@@ -5,11 +5,12 @@ class Reallocator:
         self._nof_banks = len(memory)
         self._cache = []
         self._cycles = 0
+        self._last_state = ''
 
     def run(self):
         while self._cycles < 10000:
             state = ''.join(str(x) for x in self._memory)
-            if (state in self._cache):
+            if state in self._cache:
                 self._last_state = state
                 return
             self._cache.append(state)
@@ -17,7 +18,7 @@ class Reallocator:
             blocks = self._memory[index]
             self._memory[index] = 0
             for i in range(1, blocks+1):
-                self._memory[(index + i)%self._nof_banks] += 1
+                self._memory[(index + i) % self._nof_banks] += 1
 
             self._cycles += 1
 

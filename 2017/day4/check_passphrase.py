@@ -5,14 +5,16 @@ def is_valid_passphrase(passphrase):
             return False
     return True
 
+
 def is_valid_passphrase_strict(passphrase):
     words = passphrase.split(" ")
     for i in range(0, len(words)):
         for j in range(i, len(words)):
-            if (i != j):
+            if i != j:
                 if is_anagram(words[i], words[j]):
                     return False
     return True
+
 
 def is_valid_passphrase_strict2(passphrase):
     words = passphrase.split(" ")
@@ -21,6 +23,7 @@ def is_valid_passphrase_strict2(passphrase):
         if sorted_words.count(word) > 1:
             return False
     return True
+
 
 def is_anagram(word1, word2):
     if word1 == word2:
@@ -31,7 +34,6 @@ def is_anagram(word1, word2):
         if word1.count(char) != word2.count(char):
             return False
     return True
-
 
 
 if __name__ == "__main__":
@@ -49,7 +51,7 @@ if __name__ == "__main__":
                     sum2 += 1
                 if is_valid_passphrase_strict2(passphrase):
                     sum3 += 1
-    f.closed
+    f.close()
 
     if sum2 != sum3:
         raise Exception("did get different number of valid passphrases with different methods: %d, %d" % (sum2, sum3))

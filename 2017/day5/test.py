@@ -1,6 +1,6 @@
-import unittest;
+import unittest
+from maze import Maze, StrangeMaze
 
-from maze import Maze, StrangeMaze;
 
 class TestMaze(unittest.TestCase):
 
