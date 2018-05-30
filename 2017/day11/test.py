@@ -1,7 +1,6 @@
 import unittest
 import math
 
-from hex_ed import HexEd
 from hex_ed_grid import HexEdGrid
 
 
@@ -29,16 +28,19 @@ class TestHexEd(unittest.TestCase):
         hex_ed = HexEdGrid('ne,ne,sw,sw')
         result = hex_ed.process()
         self.assertEqual(0, result)
+        self.assertEqual(2, hex_ed.max_distance())
 
     def test_example3(self):
         hex_ed = HexEdGrid('ne,ne,s,s')
         result = hex_ed.process()
         self.assertEqual(2, result)
+        self.assertEqual(2, hex_ed.max_distance())
 
     def test_example4(self):
         hex_ed = HexEdGrid('se,sw,se,sw,sw')
         result = hex_ed.process()
         self.assertEqual(3, result)
+        self.assertEqual(3, hex_ed.max_distance())
 
 
 if __name__ == '__main__':

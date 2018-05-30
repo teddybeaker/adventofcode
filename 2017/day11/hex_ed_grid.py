@@ -16,16 +16,22 @@ class HexEdGrid:
     def __init__(self, input):
         self._input = input.split(',')
         self._position = self._origin = (0, 0, 0)
+        self._max_distance = 0
 
     def process(self):
         for step in self._input:
             move = self.moves[step]
             self._position = (self._position[0] + move[0], self._position[1] + move[1], self._position[2] + move[2])
+            current_distance = self._distance_to_origin()
+            self._max_distance = max(self._max_distance, current_distance)
         print("after run, position is %s, %s, %s" % self._position)
         return self._distance_to_origin()
 
     def _distance_to_origin(self):
         return max(abs(self._position[0] - self._origin[0]), abs(self._position[1] - self._origin[1]), abs(self._position[2] - self._origin[2]))
+
+    def max_distance(self):
+        return self._max_distance
 
 
 if __name__ == '__main__':
@@ -33,4 +39,4 @@ if __name__ == '__main__':
         content = f.read().strip()
         hex_ed = HexEdGrid(content)
         steps = hex_ed.process()
-        print("steps needed %s" % steps)
+        print("steps needed %s; furthest point was %s" % (steps, hex_ed.max_distance()))
