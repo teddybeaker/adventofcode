@@ -1,6 +1,6 @@
 import unittest
 
-from digital_plumber import DigitalPlumber;
+from digital_plumber import DigitalPlumber
 
 class DigitalPlumberTest(unittest.TestCase):
 
