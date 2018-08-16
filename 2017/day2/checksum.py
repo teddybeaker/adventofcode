@@ -17,23 +17,23 @@ def checksum_row_evenly_divisible(row):
 
 
 def checksum_matrix(matrix, checksum_row):
-    sum = 0
+    total = 0
     for row in matrix:
-        sum += checksum_row(row)
-    return sum
+        total += checksum_row(row)
+    return total
 
 
 if __name__ == '__main__':
-    matrix = []
+    matrx = []
     with open('input.csv', newline='') as csvfile:
-        filereader = csv.reader(csvfile, delimiter = '\t')
-        for row in filereader:
+        filereader = csv.reader(csvfile, delimiter='\t')
+        for line in filereader:
             sanitized_row = []
-            for val in row:
+            for val in line:
                 sanitized_row.append(int(val))
-            matrix.append(sanitized_row)
-    checksum1 = checksum_matrix(matrix, checksum_row_minmax)
-    checksum2 = checksum_matrix(matrix, checksum_row_evenly_divisible)
+            matrx.append(sanitized_row)
+    checksum1 = checksum_matrix(matrx, checksum_row_minmax)
+    checksum2 = checksum_matrix(matrx, checksum_row_evenly_divisible)
     print('read file from input.csv')
     print('checksum with min-max is %d' % checksum1)
     print('checksum2 with even devision is %d' % checksum2)

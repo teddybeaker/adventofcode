@@ -36,7 +36,7 @@ class TestChecksumCalculation(unittest.TestCase):
 
     def test_checksum_row_evenly_divisable_exception(self):
         self.assertRaises(Exception, checksum_row_evenly_divisible, [1])
-        self.assertRaises(Exception, checksum_row_evenly_divisible, [2,3,5,7])
+        self.assertRaises(Exception, checksum_row_evenly_divisible, [2, 3, 5, 7])
 
     def test_checksum_matrix(self):
         matrix = [
@@ -47,7 +47,7 @@ class TestChecksumCalculation(unittest.TestCase):
         result = checksum_matrix(matrix, checksum_row_minmax)
         self.assertEqual(result, 18)
 
-    def test_checksum_matrix(self):
+    def test_checksum_matrix2(self):
         matrix = [
             [5, 9, 2, 8],
             [9, 4, 7, 3],

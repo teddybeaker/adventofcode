@@ -1,13 +1,13 @@
 def sum_duplicates(digit_string, offset):
     length = len(digit_string)
-    sum = 0
+    total = 0
     for i, char in enumerate(digit_string):
-      if char.isdigit():
-        index = (i + offset) % length;
-        if char == digit_string[index]:
-          sum += int(char)
+        if char.isdigit():
+            index = (i + offset) % length
+            if char == digit_string[index]:
+                total += int(char)
 
-    return sum
+    return total
 
 
 def sibling_duplicates(digit_string):
@@ -15,8 +15,8 @@ def sibling_duplicates(digit_string):
 
 
 def halfway_around_duplicates(digit_string):
-    offset = int(len(digit_string) / 2);
-    return sum_duplicates(digit_string, offset);
+    offset = int(len(digit_string) / 2)
+    return sum_duplicates(digit_string, offset)
 
 
 def read_from_file(filename):
